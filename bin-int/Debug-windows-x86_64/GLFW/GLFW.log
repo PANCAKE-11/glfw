@@ -1,0 +1,4 @@
+﻿cl : 命令行  warning D9002: 忽略未知选项“-std=c11”
+cl : 命令行  warning D9002: 忽略未知选项“-lgdi32”
+  null_joystick.c
+  GLFW.vcxproj -> S:\CPP\Hazel\Hazel\vendor\GLFW\bin\Debug-windows-x86_64\GLFW\GLFW.lib
