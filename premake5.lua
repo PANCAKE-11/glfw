@@ -1,13 +1,14 @@
 project "GLFW"
     kind "StaticLib"
     language "C"
+    staticruntime "on"
     
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	files
-	{
-              "include/GLFW/glfw3.h",
+    files
+    {
+            "include/GLFW/glfw3.h",
         "include/GLFW/glfw3native.h",
         "src/glfw_config.h",       --？？should it to be delete?
         "src/internal.h",       --
@@ -31,9 +32,7 @@ project "GLFW"
     }
     
 	filter "system:windows"
-        buildoptions { "-std=c11", "-lgdi32" }
         systemversion "latest"
-        staticruntime "On"
         
         files
         {
@@ -51,10 +50,15 @@ project "GLFW"
             "src/osmesa_context.c"
         }
 
-		defines 
-		{ 
+        defines 
+        { 
             "_GLFW_WIN32",
             "_CRT_SECURE_NO_WARNINGS"
-		}
-    filter { "system:windows", "configurations:Release" }
-        buildoptions "/MT"
+        }
+
+    filter "configurations:Debug"
+        runtime "Debug"
+        symbols "on"
+    filter "configurations:Release"
+        runtime "Release"
+        optimize "on"
